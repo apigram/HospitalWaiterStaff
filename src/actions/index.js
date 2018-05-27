@@ -12,8 +12,11 @@ export const FETCH_REQUIREMENT_TYPES = 'FETCH_REQUIREMENT_TYPES';
 export const FETCH_MEAL_TIMES = 'FETCH_MEAL_TIMES';
 
 const MEAL_SERVICE_HOST = 'http://localhost:5000';
-export function fetchPatients() {
-    const url = `${MEAL_SERVICE_HOST}/mealservice/patient`;
+export function fetchPatients(criteria = null) {
+    let url = `${MEAL_SERVICE_HOST}/mealservice/patient`;
+    if (criteria !== null) {
+        url = `${url}?name=${criteria}`
+    }
     const request = axios.get(url);
 
     return {
@@ -22,8 +25,11 @@ export function fetchPatients() {
     }
 }
 
-export function fetchMeals() {
-    const url = `${MEAL_SERVICE_HOST}/mealservice/meal`;
+export function fetchMeals(criteria = null) {
+    let url = `${MEAL_SERVICE_HOST}/mealservice/meal`;
+    if (criteria !== null) {
+        url = `${url}?label=${criteria}`
+    }
     const request = axios.get(url);
 
     return {
@@ -32,8 +38,11 @@ export function fetchMeals() {
     }
 }
 
-export function fetchRequirements() {
-    const url = `${MEAL_SERVICE_HOST}/mealservice/requirement`;
+export function fetchRequirements(criteria = null) {
+    let url = `${MEAL_SERVICE_HOST}/mealservice/requirement`;
+    if (criteria !== null) {
+        url = `${url}?label=${criteria}`
+    }
     const request = axios.get(url);
 
     return {

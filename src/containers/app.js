@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../App.css';
 import PatientList from '../containers/patient_list'
 import PatientDetail from '../containers/patient_detail'
@@ -18,35 +18,24 @@ class App extends Component {
         this.props.fetchRequirementTypes();
         this.props.fetchMealTimes();
     }
+
     render() {
         return (
             <div className="App">
                 <h1>Hospital Waiter - Management</h1>
-                <div className="row">
-                    <div className="col-sm-6">
-                        <PatientList/>
-                    </div>
-                    <div className="col-sm-6">
-                        <PatientDetail/>
-                    </div>
+                <div className="card-deck">
+                    <PatientList/>
+                    <PatientDetail/>
                 </div>
                 <br/>
-                <div className="row">
-                    <div className="col-sm-6">
-                        <RequirementList/>
-                    </div>
-                    <div className="col-sm-6">
-                        <RequirementDetail/>
-                    </div>
+                <div className="card-deck">
+                    <RequirementList/>
+                    <RequirementDetail/>
                 </div>
                 <br/>
-                <div className="row">
-                    <div className="col-sm-6">
-                        <MealList/>
-                    </div>
-                    <div className="col-sm-6">
-                        <MealDetail/>
-                    </div>
+                <div className="card-deck">
+                    <MealList/>
+                    <MealDetail/>
                 </div>
             </div>
         );

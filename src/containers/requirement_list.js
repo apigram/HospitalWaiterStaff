@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {fetchRequirements, selectRequirement} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import RequirementSearch from './requirement_search_bar'
 
 class RequirementList extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class RequirementList extends Component {
         return (
             <div className="card bg-light text-dark">
                 <h2 className="card-header">Requirements</h2>
+                <RequirementSearch/>
                 <ul className="list-group list-group-flush">
                     {this.renderList()}
                 </ul>

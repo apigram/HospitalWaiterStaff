@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {fetchMeals, selectMeal} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import MealSearch from './meal_search_bar'
 
 class MealList extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class MealList extends Component {
         return (
             <div className="card bg-light text-dark">
                 <h2 className="card-header">Meals</h2>
+                <MealSearch/>
                 <ul className="list-group list-group-flush">
                     {this.renderList()}
                 </ul>

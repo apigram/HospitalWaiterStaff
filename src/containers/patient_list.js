@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {fetchPatients, selectPatient} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import PatientSearch from './patient_search_bar'
 
 class PatientList extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class PatientList extends Component {
         return (
             <div className="card bg-light text-dark">
                 <h2 className="card-header">Patients</h2>
+                <PatientSearch/>
                 <ul className="list-group list-group-flush">
                     {this.renderList()}
                 </ul>
