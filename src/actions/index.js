@@ -11,6 +11,8 @@ export const FETCH_MEAL = 'FETCH_MEAL';
 export const FETCH_REQUIREMENT_TYPES = 'FETCH_REQUIREMENT_TYPES';
 export const FETCH_MEAL_TIMES = 'FETCH_MEAL_TIMES';
 
+export const ADD_PATIENT = 'ADD_PATIENT';
+
 const MEAL_SERVICE_HOST = 'http://localhost:5000';
 export function fetchPatients(criteria = null) {
     let url = `${MEAL_SERVICE_HOST}/mealservice/patient`;
@@ -98,5 +100,15 @@ export function fetchMealTimes() {
     return {
         type: FETCH_MEAL_TIMES,
         payload: request
+    }
+}
+
+export function addPatient(patient) {
+    const url = `${MEAL_SERVICE_HOST}/mealservice/patient`;
+    const request = axios.post(url, patient)
+
+    return {
+        type: ADD_PATIENT,
+        paylad: request
     }
 }

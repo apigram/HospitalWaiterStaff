@@ -12,7 +12,7 @@ class RequirementList extends Component {
 
     renderList() {
         return this.props.requirements.map((requirement) => {
-            return <li key={requirement.uri} className="list-group-item"
+            return <li key={requirement.uri} className="list-group-item list-group-item-action"
                        onClick={() => {this.props.selectRequirement(requirement.uri)}}>{requirement.label}</li>
         })
     }

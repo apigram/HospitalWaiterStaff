@@ -12,7 +12,7 @@ class MealList extends Component {
 
     renderList() {
         return this.props.meals.map((meal) => {
-            return <li key={meal.uri} className="list-group-item"
+            return <li key={meal.uri} className="list-group-item list-group-item-action"
                        onClick={() => {this.props.selectMeal(meal.uri)}}>{meal.label}</li>
         })
     }
