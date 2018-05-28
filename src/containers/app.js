@@ -6,6 +6,7 @@ import RequirementList from '../containers/requirement_list'
 import RequirementDetail from '../containers/requirement_detail'
 import MealList from '../containers/meal_list'
 import MealDetail from '../containers/meal_detail'
+import LoginForm from '../containers/login_form';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -20,25 +21,41 @@ class App extends Component {
     }
 
     render() {
-        return (
-            <div className="App">
-                <h1>Hospital Waiter - Management</h1>
-                <div className="card-deck">
-                    <PatientList/>
-                    <PatientDetail/>
+        if (this.props.activeUser !== null) {
+            return (
+                <div className="App">
+                    <h1>Hospital Waiter - Management</h1>
+                    <div className="card-deck">
+                        <PatientList/>
+                        <PatientDetail/>
+                    </div>
+                    <br/>
+                    <div className="card-deck">
+                        <RequirementList/>
+                        <RequirementDetail/>
+                    </div>
+                    <br/>
+                    <div className="card-deck">
+                        <MealList/>
+                        <MealDetail/>
+                    </div>
+                    <br/>
                 </div>
-                <br/>
-                <div className="card-deck">
-                    <RequirementList/>
-                    <RequirementDetail/>
+            );
+        } else {
+            return (
+                <div className="App">
+                    <h1>Hospital Waiter - Management</h1>
+                    <LoginForm/>
                 </div>
-                <br/>
-                <div className="card-deck">
-                    <MealList/>
-                    <MealDetail/>
-                </div>
-            </div>
-        );
+            )
+        }
+    }
+}
+
+function mapStateToProps(state) {
+    return {
+        activeUser: state.activeUser
     }
 }
 
@@ -46,4 +63,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({fetchRequirementTypes, fetchMealTimes}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

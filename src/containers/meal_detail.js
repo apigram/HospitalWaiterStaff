@@ -16,7 +16,7 @@ class MealDetail extends Component {
                 <h2 className="card-header">{this.props.activeMeal.label}</h2>
                 <div className="card-body">
                     <p>Quantity: {this.props.activeMeal.current_quantity}/{this.props.activeMeal.total_quantity}</p>
-                    <p>Time of Day: {_.findKey(this.props.mealTimes, _.partial(_.isEqual, this.props.activeMeal.time_of_day))}</p>
+                    <p>Time of Day: {_.find(this.props.mealTimes, {'value': this.props.activeMeal.time_of_day}).key}</p>
                 </div>
             </div>
         );

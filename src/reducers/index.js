@@ -5,8 +5,9 @@ import PatientsReducer from './reducer_patients';
 import ActiveRequirementReducer from './reducer_active_requirement'
 import ActivePatientReducer from './reducer_active_patient'
 import ActiveMealReducer from './reducer_active_meal'
-import RequirementTypesReducer from '../reducers/reducer_requirement_types';
-import MealTimesReducer from '../reducers/reducer_meal_times';
+import RequirementTypesReducer from './reducer_requirement_types';
+import MealTimesReducer from './reducer_meal_times';
+import AuthReducer from './reducer_auth'
 
 const rootReducer = combineReducers({
     patients: PatientsReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     activeRequirement: ActiveRequirementReducer,
     activeMeal: ActiveMealReducer,
     requirementTypes: RequirementTypesReducer,
-    mealTimes: MealTimesReducer
+    mealTimes: MealTimesReducer,
+    activeUser: AuthReducer
 });
 
 export default rootReducer;

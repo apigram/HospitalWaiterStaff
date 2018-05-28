@@ -6,13 +6,13 @@ import PatientSearch from './patient_search_bar'
 import Modal from 'react-modal';
 
 const customStyles = {
-    content : {
-        top                   : '50%',
-        left                  : '50%',
-        right                 : 'auto',
-        bottom                : 'auto',
-        marginRight           : '-50%',
-        transform             : 'translate(-50%, -50%)'
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
     }
 };
 
@@ -39,8 +39,24 @@ class PatientList extends Component {
 
     renderList() {
         return this.props.patients.map((patient) => {
-            return <li key={patient.uri} className="list-group-item list-group-item-action"
-            onClick={() => {this.props.selectPatient(patient.uri)}}>{patient.first_name} {patient.last_name}</li>
+            let listClass = 'list-group-item list-group-item-action';
+            if (this.props.activePatient !== null && patient.uri === this.props.activePatient.uri) {
+                listClass = listClass + ' active';
+            }
+            return (
+                <li key={patient.uri} className={listClass} onClick={() => {
+                    this.props.selectPatient(patient.uri)
+                }}>
+                    <div className="row">
+                        <div className="col-sm-10">
+                            {patient.first_name} {patient.last_name}
+                        </div>
+                        <div className="col-sm-2">
+                            <button type="button" className="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </li>
+            )
         })
     }
 
@@ -103,17 +119,23 @@ class PatientList extends Component {
                                 <form onSubmit={this.handleSubmit}>
                                     <div className="form-group">
                                         <label htmlFor="first_name">First Name:</label>
-                                        <input name="first_name" type="text" onChange={this.handleChange} value={this.state.patient_first_name} className="form-control"/>
+                                        <input name="first_name" type="text" onChange={this.handleChange}
+                                               value={this.state.patient_first_name} className="form-control"/>
                                         <label htmlFor="last_name">Last Name:</label>
-                                        <input name="last_name" type="text" onChange={this.handleChange} value={this.state.patient_last_name} className="form-control"/>
+                                        <input name="last_name" type="text" onChange={this.handleChange}
+                                               value={this.state.patient_last_name} className="form-control"/>
                                         <label htmlFor="email">Email Address:</label>
-                                        <input name="email" type="email" onChange={this.handleChange} value={this.state.patient_email} className="form-control"/>
+                                        <input name="email" type="email" onChange={this.handleChange}
+                                               value={this.state.patient_email} className="form-control"/>
                                         <label htmlFor="date_of_birth">Date of Birth:</label>
-                                        <input name="date_of_birth" type="date" onChange={this.handleChange} value={this.state.patient_date_of_birth} className="form-control"/>
+                                        <input name="date_of_birth" type="date" onChange={this.handleChange}
+                                               value={this.state.patient_date_of_birth} className="form-control"/>
                                     </div>
                                     <div className="btn-group">
                                         <button type="submit" className="btn btn-primary">Create</button>
-                                        <button type="button" className="btn btn-danger" onClick={this.closeModal}>Cancel</button>
+                                        <button type="button" className="btn btn-danger"
+                                                onClick={this.closeModal}>Cancel
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -128,6 +150,7 @@ class PatientList extends Component {
 function mapStateToProps(state) {
     return {
         patients: state.patients,
+        activePatient: state.activePatient
     }
 }
 

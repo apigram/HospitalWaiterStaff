@@ -12,14 +12,25 @@ export const FETCH_REQUIREMENT_TYPES = 'FETCH_REQUIREMENT_TYPES';
 export const FETCH_MEAL_TIMES = 'FETCH_MEAL_TIMES';
 
 export const ADD_PATIENT = 'ADD_PATIENT';
+export const ADD_REQUIREMENT = 'ADD_REQUIREMENT';
+export const ADD_MEAL = 'ADD_MEAL';
+
+export const LOGIN = 'LOGIN';
 
 const MEAL_SERVICE_HOST = 'http://localhost:5000';
+
+export let AUTH_HEADER = {
+    auth: {
+        username: null
+    }
+};
+
 export function fetchPatients(criteria = null) {
     let url = `${MEAL_SERVICE_HOST}/mealservice/patient`;
     if (criteria !== null) {
         url = `${url}?name=${criteria}`
     }
-    const request = axios.get(url);
+    const request = axios.get(url, AUTH_HEADER);
 
     return {
         type: FETCH_PATIENTS,
@@ -32,7 +43,7 @@ export function fetchMeals(criteria = null) {
     if (criteria !== null) {
         url = `${url}?label=${criteria}`
     }
-    const request = axios.get(url);
+    const request = axios.get(url, AUTH_HEADER);
 
     return {
         type: FETCH_MEALS,
@@ -45,7 +56,7 @@ export function fetchRequirements(criteria = null) {
     if (criteria !== null) {
         url = `${url}?label=${criteria}`
     }
-    const request = axios.get(url);
+    const request = axios.get(url, AUTH_HEADER);
 
     return {
         type: FETCH_REQUIREMENTS,
@@ -55,7 +66,7 @@ export function fetchRequirements(criteria = null) {
 
 export function selectPatient(patient_uri) {
     const url = `${MEAL_SERVICE_HOST}${patient_uri}`;
-    const request = axios.get(url);
+    const request = axios.get(url, AUTH_HEADER);
 
     return {
         type: FETCH_PATIENT,
@@ -65,7 +76,7 @@ export function selectPatient(patient_uri) {
 
 export function selectRequirement(requirement_uri) {
     const url = `${MEAL_SERVICE_HOST}${requirement_uri}`;
-    const request = axios.get(url);
+    const request = axios.get(url, AUTH_HEADER);
 
     return {
         type: FETCH_REQUIREMENT,
@@ -75,7 +86,7 @@ export function selectRequirement(requirement_uri) {
 
 export function selectMeal(meal_uri) {
     const url = `${MEAL_SERVICE_HOST}${meal_uri}`;
-    const request = axios.get(url);
+    const request = axios.get(url, AUTH_HEADER);
 
     return {
         type: FETCH_MEAL,
@@ -85,7 +96,7 @@ export function selectMeal(meal_uri) {
 
 export function fetchRequirementTypes() {
     const url = `${MEAL_SERVICE_HOST}/mealservice/ref/requirement_type`;
-    const request = axios.get(url);
+    const request = axios.get(url, AUTH_HEADER);
 
     return {
         type: FETCH_REQUIREMENT_TYPES,
@@ -95,7 +106,7 @@ export function fetchRequirementTypes() {
 
 export function fetchMealTimes() {
     const url = `${MEAL_SERVICE_HOST}/mealservice/ref/meal_time`;
-    const request = axios.get(url);
+    const request = axios.get(url, AUTH_HEADER);
 
     return {
         type: FETCH_MEAL_TIMES,
@@ -105,10 +116,48 @@ export function fetchMealTimes() {
 
 export function addPatient(patient) {
     const url = `${MEAL_SERVICE_HOST}/mealservice/patient`;
-    const request = axios.post(url, patient)
+    const request = axios.post(url, patient, AUTH_HEADER);
 
     return {
         type: ADD_PATIENT,
-        paylad: request
+        payload: request
     }
+}
+
+export function addRequirement(requirement) {
+    const url = `${MEAL_SERVICE_HOST}/mealservice/requirement`;
+    const request = axios.post(url, requirement, AUTH_HEADER);
+
+    return {
+        type: ADD_REQUIREMENT,
+        payload: request
+    }
+}
+
+export function addMeal(meal) {
+    const url = `${MEAL_SERVICE_HOST}/mealservice/meal`;
+    const request = axios.post(url, meal, AUTH_HEADER);
+
+    return {
+        type: ADD_MEAL,
+        payload: request
+    }
+}
+
+export function login(user, password) {
+    const url = `${MEAL_SERVICE_HOST}/auth/token`;
+
+    const request = axios.get(url, {
+            auth: {
+                username: user,
+                password
+            }
+        }
+    );
+
+    return {
+        type: LOGIN,
+        payload: request
+    }
+
 }

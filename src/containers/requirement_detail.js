@@ -15,7 +15,7 @@ class RequirementDetail extends Component {
             <div className="card text-white bg-info">
                 <h2 className="card-header">{this.props.activeRequirement.label}</h2>
                 <div className="card-body">
-                    <p>Type: {_.findKey(this.props.requirementTypes, _.partial(_.isEqual, this.props.activeRequirement.type))}</p>
+                    <p>Type: {_.find(this.props.requirementTypes, {'value': this.props.activeRequirement.type}).key}</p>
                 </div>
             </div>
         );
