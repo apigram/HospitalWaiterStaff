@@ -23,9 +23,18 @@ export const DELETE_PATIENT = 'DELETE_PATIENT';
 export const DELETE_REQUIREMENT = 'DELETE_REQUIREMENT';
 export const DELETE_MEAL = 'DELETE_MEAL';
 
+export const DELETE_PATIENT_REQUIREMENT = 'DELETE_PATIENT_REQUIREMENT';
+export const DELETE_MEAL_REQUIREMENT = 'DELETE_MEAL_REQUIREMENT';
+
+export const ADD_PATIENT_REQUIREMENT = 'ADD_PATIENT_REQUIREMENT';
+export const ADD_MEAL_REQUIREMENT = 'ADD_MEAL_REQUIREMENT';
+
+export const FETCH_PATIENT_REQUIREMENTS = 'FETCH_PATIENT_REQUIREMENTS';
+export const FETCH_MEAL_REQUIREMENTS = 'FETCH_MEAL_REQUIREMENTS';
+
 export const LOGIN = 'LOGIN';
 
-const MEAL_SERVICE_HOST = 'http://localhost:5000';
+export const MEAL_SERVICE_HOST = 'http://localhost:5000';
 
 export let AUTH_HEADER = {
     auth: {
@@ -209,6 +218,65 @@ export function deleteMeal(meal_uri) {
 
     return {
         type: DELETE_MEAL,
+        payload: request
+    };
+}
+
+export function fetchPatientRequirements(patient_req_uri) {
+    const url = `${MEAL_SERVICE_HOST}${patient_req_uri}`;
+    const request = axios.get(url, AUTH_HEADER);
+
+    return {
+        type: FETCH_PATIENT_REQUIREMENTS,
+        payload: request
+    };
+}
+
+export function fetchMealRequirements(meal_req_uri) {
+    const url = `${MEAL_SERVICE_HOST}${meal_req_uri}`;
+    const request = axios.get(url, AUTH_HEADER);
+
+    return {
+        type: FETCH_MEAL_REQUIREMENTS,
+        payload: request
+    };
+}
+
+export function deletePatientRequirement(patient_req_uri) {
+    const url = `${MEAL_SERVICE_HOST}${patient_req_uri}`;
+    const request = axios.delete(url, AUTH_HEADER);
+
+    return {
+        type: DELETE_PATIENT_REQUIREMENT,
+        payload: request
+    };
+}
+
+export function deleteMealRequirement(meal_req_uri) {
+    const url = `${MEAL_SERVICE_HOST}${meal_req_uri}`;
+    const request = axios.delete(url, AUTH_HEADER);
+
+    return {
+        type: DELETE_MEAL_REQUIREMENT,
+        payload: request
+    };
+}
+export function addPatientRequirement(patient_req_uri, patient_req_data) {
+    const url = `${MEAL_SERVICE_HOST}${patient_req_uri}`;
+    const request = axios.post(url, patient_req_data, AUTH_HEADER);
+
+    return {
+        type: ADD_PATIENT_REQUIREMENT,
+        payload: request
+    };
+}
+
+export function addMealRequirement(meal_req_uri, meal_req_data) {
+    const url = `${MEAL_SERVICE_HOST}${meal_req_uri}`;
+    const request = axios.post(url, meal_req_data, AUTH_HEADER);
+
+    return {
+        type: ADD_MEAL_REQUIREMENT,
         payload: request
     };
 }

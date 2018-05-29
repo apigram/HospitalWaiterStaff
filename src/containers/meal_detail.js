@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {saveMeal} from "../actions";
 import {bindActionCreators} from "redux";
+import MealRequirementList from './meal_requirement_list';
 
 class MealDetail extends Component {
     constructor(props) {
@@ -69,8 +70,8 @@ class MealDetail extends Component {
             return (
                 <div className="card text-white bg-info">
                     <h2 className="card-header">{this.props.activeMeal.label}</h2>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="card-body">
+                    <div className="card-body">
+                        <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="total_quantity">Total Quantity:</label>
                                 <input name="total_quantity" type="text" className="form-control"
@@ -88,11 +89,10 @@ class MealDetail extends Component {
                                     {this.renderOptions()}
                                 </select>
                             </div>
-                        </div>
-                        <div className="card-footer">
                             <button className="btn btn-primary" type="submit">Save</button>
-                        </div>
-                    </form>
+                        </form>
+                        <MealRequirementList/>
+                    </div>
                 </div>
             )
         }

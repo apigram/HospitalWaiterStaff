@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {savePatient} from "../actions";
 import {bindActionCreators} from 'redux';
+import PatientRequirementList from './patient_requirement_list';
 
 class PatientDetail extends Component {
     constructor(props) {
@@ -67,8 +68,8 @@ class PatientDetail extends Component {
         return (
             <div className="card text-white bg-info">
                 <h2 className="card-header">{this.props.activePatient.first_name} {this.props.activePatient.last_name}</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="card-body">
+                <div className="card-body">
+                    <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="first_name">First Name:</label>
                             <input type="text" name="first_name" onChange={this.handleChange}
@@ -84,11 +85,11 @@ class PatientDetail extends Component {
                             <input type="date" name="first_name" onChange={this.handleChange}
                                    value={this.state.date_of_birth} className="form-control"/>
                         </div>
-                    </div>
-                    <div className="card-footer">
                         <button className="btn btn-primary" type="submit">Save</button>
-                    </div>
-                </form>
+                    </form>
+                    <br/>
+                    <PatientRequirementList/>
+                </div>
             </div>
         );
     }
