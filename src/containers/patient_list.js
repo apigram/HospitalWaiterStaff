@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchPatients, selectPatient, addPatient} from '../actions';
+import {fetchPatients, selectPatient, addPatient, deletePatient, savePatient} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PatientSearch from './patient_search_bar'
@@ -16,7 +16,7 @@ const customStyles = {
     }
 };
 
-Modal.setAppElement(document.querySelector('.App'));
+Modal.setAppElement('.container');
 
 class PatientList extends Component {
 
@@ -37,6 +37,10 @@ class PatientList extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    removePatient(patient_uri) {
+        this.props.deletePatient(patient_uri);
+    }
+
     renderList() {
         return this.props.patients.map((patient) => {
             let listClass = 'list-group-item list-group-item-action';
@@ -44,15 +48,13 @@ class PatientList extends Component {
                 listClass = listClass + ' active';
             }
             return (
-                <li key={patient.uri} className={listClass} onClick={() => {
-                    this.props.selectPatient(patient.uri)
-                }}>
+                <li key={patient.uri} className={listClass} >
                     <div className="row">
-                        <div className="col-sm-10">
+                        <div className="col-sm-10" onClick={() => {this.props.selectPatient(patient.uri)}}>
                             {patient.first_name} {patient.last_name}
                         </div>
                         <div className="col-sm-2">
-                            <button type="button" className="btn btn-danger">Delete</button>
+                            <button type="button" className="btn btn-danger" onClick={() => {this.removePatient(patient.uri)}}>Delete</button>
                         </div>
                     </div>
                 </li>
@@ -92,6 +94,8 @@ class PatientList extends Component {
                 break;
             case 'date_of_birth':
                 this.setState({patient_date_of_birth: event.target.value});
+                break;
+            default:
                 break;
         }
     }
@@ -155,7 +159,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchPatients, selectPatient, addPatient}, dispatch);
+    return bindActionCreators({fetchPatients, selectPatient, addPatient, deletePatient}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PatientList);

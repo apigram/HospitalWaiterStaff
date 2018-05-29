@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchMeals, selectMeal, addMeal} from '../actions';
+import {fetchMeals, selectMeal, addMeal, deleteMeal} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import MealSearch from './meal_search_bar'
@@ -16,7 +16,7 @@ const customStyles = {
     }
 };
 
-Modal.setAppElement(document.querySelector('.App'));
+Modal.setAppElement('.container');
 
 class MealList extends Component {
     constructor(props) {
@@ -62,6 +62,8 @@ class MealList extends Component {
             case 'meal_time_of_day':
                 this.setState({meal_time_of_day: event.target.value});
                 break;
+            default:
+                break;
         }
     }
 
@@ -73,6 +75,10 @@ class MealList extends Component {
         })
     }
 
+    removeMeal(meal_uri) {
+        this.props.deleteMeal(meal_uri);
+    }
+
 
     renderList() {
         return this.props.meals.map((meal) => {
@@ -81,16 +87,13 @@ class MealList extends Component {
                 listClass = listClass + ' active';
             }
             return (
-                <li key={meal.uri} className={listClass}
-                    onClick={() => {
-                        this.props.selectMeal(meal.uri)
-                    }}>
+                <li key={meal.uri} className={listClass}>
                     <div className="row">
-                        <div className="col-sm-10">
+                        <div className="col-sm-10" onClick={() => {this.props.selectMeal(meal.uri)}}>
                             {meal.label}
                         </div>
                         <div className="col-sm-2">
-                            <button type="button" className="btn btn-danger">Delete</button>
+                            <button type="button" className="btn btn-danger" onClick={() => {this.removeMeal(meal.uri)}}>Delete</button>
                         </div>
                     </div>
                 </li>
@@ -156,7 +159,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchMeals, selectMeal, addMeal}, dispatch);
+    return bindActionCreators({fetchMeals, selectMeal, addMeal, deleteMeal}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MealList);

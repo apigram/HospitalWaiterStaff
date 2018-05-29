@@ -15,6 +15,14 @@ export const ADD_PATIENT = 'ADD_PATIENT';
 export const ADD_REQUIREMENT = 'ADD_REQUIREMENT';
 export const ADD_MEAL = 'ADD_MEAL';
 
+export const SAVE_PATIENT = 'SAVE_PATIENT';
+export const SAVE_REQUIREMENT = 'SAVE_REQUIREMENT';
+export const SAVE_MEAL = 'SAVE_MEAL';
+
+export const DELETE_PATIENT = 'DELETE_PATIENT';
+export const DELETE_REQUIREMENT = 'DELETE_REQUIREMENT';
+export const DELETE_MEAL = 'DELETE_MEAL';
+
 export const LOGIN = 'LOGIN';
 
 const MEAL_SERVICE_HOST = 'http://localhost:5000';
@@ -144,6 +152,67 @@ export function addMeal(meal) {
     }
 }
 
+export function savePatient(patient_uri, patient_data) {
+    const url = `${MEAL_SERVICE_HOST}${patient_uri}`;
+    const request = axios.put(url, patient_data, AUTH_HEADER);
+
+    return {
+        type: SAVE_PATIENT,
+        payload: request
+    };
+}
+
+export function saveRequirement(requirement_uri, requirement_data) {
+    const url = `${MEAL_SERVICE_HOST}${requirement_uri}`;
+    const request = axios.put(url, requirement_data, AUTH_HEADER);
+
+    return {
+        type: SAVE_REQUIREMENT,
+        payload: request
+    };
+}
+
+export function saveMeal(meal_uri, meal_data) {
+    const url = `${MEAL_SERVICE_HOST}${meal_uri}`;
+    const request = axios.put(url, meal_data, AUTH_HEADER);
+
+    return {
+        type: SAVE_MEAL,
+        payload: request
+    };
+}
+
+export function deletePatient(patient_uri) {
+    const url = `${MEAL_SERVICE_HOST}${patient_uri}`;
+    const request = axios.delete(url, AUTH_HEADER);
+
+    return {
+        type: DELETE_PATIENT,
+        payload: request
+    };
+}
+
+export function deleteRequirement(requirement_uri) {
+    const url = `${MEAL_SERVICE_HOST}${requirement_uri}`;
+    const request = axios.delete(url, AUTH_HEADER);
+
+    return {
+        type: DELETE_REQUIREMENT,
+        payload: request
+    };
+}
+
+export function deleteMeal(meal_uri) {
+    console.log('Deleting');
+    const url = `${MEAL_SERVICE_HOST}${meal_uri}`;
+    const request = axios.delete(url, AUTH_HEADER);
+
+    return {
+        type: DELETE_MEAL,
+        payload: request
+    };
+}
+
 export function login(user, password) {
     const url = `${MEAL_SERVICE_HOST}/auth/token`;
 
@@ -159,5 +228,4 @@ export function login(user, password) {
         type: LOGIN,
         payload: request
     }
-
 }

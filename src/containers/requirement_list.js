@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchRequirements, selectRequirement, addRequirement} from '../actions';
+import {fetchRequirements, selectRequirement, addRequirement, deleteRequirement} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import RequirementSearch from './requirement_search_bar'
@@ -16,7 +16,7 @@ const customStyles = {
     }
 };
 
-Modal.setAppElement(document.querySelector('.App'));
+Modal.setAppElement('.container');
 
 class RequirementList extends Component {
     constructor(props) {
@@ -50,6 +50,10 @@ class RequirementList extends Component {
         this.closeModal();
     }
 
+    removeRequirement(requirement_uri) {
+        this.props.deleteRequirement(requirement_uri);
+    }
+
     handleChange(event) {
         switch (event.target.name) {
             case 'requirement_label':
@@ -57,6 +61,8 @@ class RequirementList extends Component {
                 break;
             case 'requirement_type':
                 this.setState({requirement_type: event.target.value});
+                break;
+            default:
                 break;
         }
     }
@@ -76,13 +82,13 @@ class RequirementList extends Component {
                 listClass = listClass + ' active';
             }
             return (
-                <li key={requirement.uri} className={listClass} onClick={() => {this.props.selectRequirement(requirement.uri)}}>
+                <li key={requirement.uri} className={listClass} >
                     <div className="row">
-                        <div className="col-sm-10">
+                        <div className="col-sm-10" onClick={() => {this.props.selectRequirement(requirement.uri)}}>
                             {requirement.label}
                         </div>
                         <div className="col-sm-2">
-                            <button type="button" className="btn btn-danger">Delete</button>
+                            <button type="button" className="btn btn-danger" onClick={() => {this.removeRequirement(requirement.uri)}}>Delete</button>
                         </div>
                     </div>
                 </li>
@@ -145,7 +151,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchRequirements, selectRequirement, addRequirement}, dispatch);
+    return bindActionCreators({fetchRequirements, selectRequirement, addRequirement, deleteRequirement}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequirementList);

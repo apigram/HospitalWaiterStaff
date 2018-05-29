@@ -24,6 +24,16 @@ class App extends Component {
         if (this.props.activeUser !== null) {
             return (
                 <div className="App">
+                    <nav className="navbar navbar-expand-sm bg-secondary text-white">
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <a className="nav-link text-white" href="#">Import from PAS</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link text-white" href="#">Reconcile MHR</a>
+                            </li>
+                        </ul>
+                    </nav>
                     <h1>Hospital Waiter - Management</h1>
                     <div className="card-deck">
                         <PatientList/>
