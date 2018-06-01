@@ -24,13 +24,13 @@ class App extends Component {
         if (this.props.activeUser !== null) {
             return (
                 <div className="App">
-                    <nav className="navbar navbar-expand-sm bg-secondary text-white">
+                    <nav className="navbar navbar-expand-sm bg-secondary navbar-dark">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link text-white" href="#">Import from PAS</a>
+                                <a href="javascript:void(0)" className="nav-link">Import from PAS</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white" href="#">Reconcile MHR</a>
+                                <a href="javascript:void(0)" className="nav-link">Reconcile MHR</a>
                             </li>
                         </ul>
                     </nav>

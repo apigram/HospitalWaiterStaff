@@ -52,6 +52,8 @@ class MealDetail extends Component {
             case 'time_of_day':
                 this.setState({time_of_day: event.target.value});
                 break;
+            default:
+                break;
         }
     }
 
@@ -91,6 +93,7 @@ class MealDetail extends Component {
                             </div>
                             <button className="btn btn-primary" type="submit">Save</button>
                         </form>
+                        <br/>
                         <MealRequirementList/>
                     </div>
                 </div>

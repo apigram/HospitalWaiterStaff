@@ -44,6 +44,8 @@ class PatientDetail extends Component {
             case 'date_of_birth':
                 this.setState({date_of_birth: event.target.value});
                 break;
+            default:
+                break;
         }
     }
 

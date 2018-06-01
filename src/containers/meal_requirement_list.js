@@ -6,7 +6,6 @@ import {
 } from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import axios from 'axios';
 
 class MealRequirementList extends Component {
     constructor(props) {

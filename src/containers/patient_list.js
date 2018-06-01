@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchPatients, selectPatient, addPatient, deletePatient, savePatient} from '../actions';
+import {fetchPatients, selectPatient, addPatient, deletePatient} from '../actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import PatientSearch from './patient_search_bar'
