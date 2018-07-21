@@ -1,4 +1,4 @@
-import {FETCH_REQUIREMENTS, ADD_REQUIREMENT, DELETE_REQUIREMENT, SAVE_REQUIREMENT} from '../actions';
+import {FETCH_REQUIREMENTS, ADD_REQUIREMENT, DELETE_REQUIREMENT, SAVE_REQUIREMENT} from '../../actions/index';
 
 export default function(state = [], action) {
     switch (action.type) {

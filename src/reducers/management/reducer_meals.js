@@ -1,4 +1,4 @@
-import {ADD_MEAL, FETCH_MEALS, SAVE_MEAL, DELETE_MEAL} from '../actions';
+import {ADD_MEAL, FETCH_MEALS, SAVE_MEAL, DELETE_MEAL} from '../../actions/index';
 
 export default function(state = [], action) {
     switch (action.type) {

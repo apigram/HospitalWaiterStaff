@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {saveMeal} from "../actions";
+import {saveMeal} from "../../actions/index";
 import {bindActionCreators} from "redux";
 import MealRequirementList from './meal_requirement_list';
 

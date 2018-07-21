@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {deletePatientRequirement, addPatientRequirement, fetchPatientRequirements} from '../actions';
+import {deletePatientRequirement, addPatientRequirement, fetchPatientRequirements} from '../../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 

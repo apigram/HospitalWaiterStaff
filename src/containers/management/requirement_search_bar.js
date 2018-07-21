@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import {fetchPatients} from '../actions/index';
+import {fetchRequirements} from '../../actions/index';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-class PatientSearch extends Component {
+class RequirementSearch extends Component {
     constructor(props) {
         super(props);
         this.state = {criteria: ''};
@@ -13,7 +13,7 @@ class PatientSearch extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.fetchPatients(this.state.criteria);
+        this.props.fetchRequirements(this.state.criteria);
     }
 
     handleChange(event) {
@@ -30,7 +30,7 @@ class PatientSearch extends Component {
                                value={this.state.criteria}
                                onChange={this.handleChange}
                                className="form-control"
-                               placeholder="Search for a patient..."/>
+                               placeholder="Search for a requirement..."/>
                     </div>
                 </form>
             </div>
@@ -39,7 +39,7 @@ class PatientSearch extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchPatients}, dispatch);
+    return bindActionCreators({fetchRequirements}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(PatientSearch);
+export default connect(null, mapDispatchToProps)(RequirementSearch);

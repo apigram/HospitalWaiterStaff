@@ -1,4 +1,4 @@
-import {FETCH_MEAL_TIMES} from '../actions';
+import {FETCH_MEAL_TIMES} from '../../actions/index';
 
 export default function(state = [], action) {
     switch (action.type) {

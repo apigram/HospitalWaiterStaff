@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchRequirements, selectRequirement, addRequirement, deleteRequirement} from '../actions';
+import {fetchRequirements, selectRequirement, addRequirement, deleteRequirement} from '../../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import RequirementSearch from './requirement_search_bar'

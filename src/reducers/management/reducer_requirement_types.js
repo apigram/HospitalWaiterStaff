@@ -1,4 +1,4 @@
-import {FETCH_REQUIREMENT_TYPES} from '../actions';
+import {FETCH_REQUIREMENT_TYPES} from '../../actions/index';
 
 export default function(state = [], action) {
     switch (action.type) {

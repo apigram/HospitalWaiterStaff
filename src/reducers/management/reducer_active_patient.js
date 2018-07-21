@@ -1,4 +1,4 @@
-import {FETCH_PATIENT} from '../actions';
+import {FETCH_PATIENT} from '../../actions/index';
 
 export default function(state = null, action) {
     switch (action.type) {

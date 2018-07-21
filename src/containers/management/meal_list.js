@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchMeals, selectMeal, addMeal, deleteMeal} from '../actions';
+import {fetchMeals, selectMeal, addMeal, deleteMeal} from '../../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import MealSearch from './meal_search_bar'

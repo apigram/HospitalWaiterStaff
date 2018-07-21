@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {saveRequirement} from "../actions";
+import {saveRequirement} from "../../actions/index";
 import {bindActionCreators} from "redux";
 
 class RequirementDetail extends Component {

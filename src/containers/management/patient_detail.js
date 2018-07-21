@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {savePatient} from "../actions";
+import {savePatient} from "../../actions/index";
 import {bindActionCreators} from 'redux';
 import PatientRequirementList from './patient_requirement_list';
+import {Card, CardBody, CardHeader, Form, FormGroup, Input, Button, Label} from 'reactstrap';
 
 class PatientDetail extends Component {
     constructor(props) {
@@ -68,31 +69,32 @@ class PatientDetail extends Component {
             </div>
         }
         return (
-            <div className="card text-white bg-info">
-                <h2 className="card-header">{this.props.activePatient.first_name} {this.props.activePatient.last_name}</h2>
-                <div className="card-body">
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="first_name">First Name:</label>
-                            <input type="text" name="first_name" onChange={this.handleChange}
-                                   value={this.state.first_name} className="form-control"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="last_name">Last Name:</label>
-                            <input type="text" name="first_name" onChange={this.handleChange}
-                                   value={this.state.last_name} className="form-control"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="date_of_birth">Date of Birth:</label>
-                            <input type="date" name="first_name" onChange={this.handleChange}
-                                   value={this.state.date_of_birth} className="form-control"/>
-                        </div>
-                        <button className="btn btn-primary" type="submit">Save</button>
-                    </form>
+            <Card color="info">
+                <CardHeader tag="h2">{this.props.activePatient.first_name} {this.props.activePatient.last_name}</CardHeader>
+                <CardBody>
+                    <Form onSubmit={this.handleSubmit}>
+                        <FormGroup>
+                            <Label htmlFor="first_name">First Name:</Label>
+                            <Input type="text" name="first_name" onChange={this.handleChange}
+                                   value={this.state.first_name} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="last_name">Last Name:</Label>
+                            <Input type="text" name="first_name" onChange={this.handleChange}
+                                   value={this.state.last_name} />
+
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor="date_of_birth">Date of Birth:</Label>
+                            <Input type="date" name="first_name" onChange={this.handleChange}
+                                   value={this.state.date_of_birth} />
+                        </FormGroup>
+                        <Button color="primary" type="submit">Save</Button>
+                    </Form>
                     <br/>
                     <PatientRequirementList/>
-                </div>
-            </div>
+                </CardBody>
+            </Card>
         );
     }
 }

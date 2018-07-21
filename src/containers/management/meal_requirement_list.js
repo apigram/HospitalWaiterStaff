@@ -3,7 +3,7 @@ import {
     deleteMealRequirement,
     fetchMealRequirements,
     addMealRequirement
-} from '../actions';
+} from '../../actions/index';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 

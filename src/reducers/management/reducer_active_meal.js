@@ -1,4 +1,4 @@
-import {FETCH_MEAL} from '../actions';
+import {FETCH_MEAL} from '../../actions/index';
 
 export default function(state = null, action) {
     switch (action.type) {

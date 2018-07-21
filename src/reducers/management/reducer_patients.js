@@ -1,4 +1,4 @@
-import {FETCH_PATIENTS, ADD_PATIENT, SAVE_PATIENT, DELETE_PATIENT} from '../actions';
+import {FETCH_PATIENTS, ADD_PATIENT, SAVE_PATIENT, DELETE_PATIENT} from '../../actions/index';
 
 export default function(state = [], action) {
     switch (action.type) {

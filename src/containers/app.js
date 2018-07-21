@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import '../App.css';
-import PatientList from '../containers/patient_list'
-import PatientDetail from '../containers/patient_detail'
-import RequirementList from '../containers/requirement_list'
-import RequirementDetail from '../containers/requirement_detail'
-import MealList from '../containers/meal_list'
-import MealDetail from '../containers/meal_detail'
+import ManagementTab from '../components/management_tab'
+import AnalyticsTab from '../components/analytics_tab'
 import LoginForm from '../containers/login_form';
+import {TabContent, Nav, Navbar, NavItem, NavLink} from 'reactstrap';
+import classnames from 'classnames';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -16,46 +14,65 @@ import {fetchRequirementTypes, fetchMealTimes} from "../actions";
 class App extends Component {
     constructor(props) {
         super(props);
+
         this.props.fetchRequirementTypes();
         this.props.fetchMealTimes();
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            activeTab: '1'
+        };
+    }
+
+    toggle(tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
     }
 
     render() {
         if (this.props.activeUser !== null) {
             return (
                 <div className="App">
-                    <nav className="navbar navbar-expand-sm bg-secondary navbar-dark">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <a href="javascript:void(0)" className="nav-link">Import from PAS</a>
-                            </li>
-                            <li className="nav-item">
-                                <a href="javascript:void(0)" className="nav-link">Reconcile MHR</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <h1>Hospital Waiter - Management</h1>
-                    <div className="card-deck">
-                        <PatientList/>
-                        <PatientDetail/>
-                    </div>
-                    <br/>
-                    <div className="card-deck">
-                        <RequirementList/>
-                        <RequirementDetail/>
-                    </div>
-                    <br/>
-                    <div className="card-deck">
-                        <MealList/>
-                        <MealDetail/>
-                    </div>
-                    <br/>
+                    <Navbar color="dark" dark expand="md">
+                        <Nav navbar>
+                            <NavItem>
+                                <NavLink href="#">Import from PAS</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="#">Reconcile MHR</NavLink>
+                            </NavItem>
+                        </Nav>
+                    </Navbar>
+                    <h1>HospitalWaiter</h1>
+                    <Nav tabs>
+                        <NavItem>
+                            <NavLink
+                                className={classnames({ active: this.state.activeTab === '1' })}
+                                onClick={() => { this.toggle('1'); }}>
+                                Management
+                            </NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink
+                                className={classnames({ active: this.state.activeTab === '2' })}
+                                onClick={() => { this.toggle('2'); }}>
+                                Analytics
+                            </NavLink>
+                        </NavItem>
+                    </Nav>
+                    <TabContent activeTab={this.state.activeTab}>
+                        <ManagementTab/>
+                        <AnalyticsTab/>
+                    </TabContent>
                 </div>
             );
         } else {
             return (
                 <div className="App">
-                    <h1>Hospital Waiter - Management</h1>
+                    <h1>Hospital Waiter</h1>
                     <LoginForm/>
                 </div>
             )
