@@ -7,7 +7,7 @@ export default function(state = null, action) {
                 console.log(action.payload.status + ': ' + action.payload.message);
                 return null;
             }
-            AUTH_HEADER.auth.username = action.payload.data.user.token;
+            AUTH_HEADER.headers.Authorization = `Bearer ${action.payload.data.user.token}`;
             return action.payload.data.user;
         default:
             return state;

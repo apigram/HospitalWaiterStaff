@@ -37,8 +37,8 @@ export const LOGIN = 'LOGIN';
 export const MEAL_SERVICE_HOST = 'http://localhost:5000';
 
 export let AUTH_HEADER = {
-    auth: {
-        username: null
+    headers: {
+        Authorization: null
     }
 };
 
@@ -282,7 +282,7 @@ export function addMealRequirement(meal_req_uri, meal_req_data) {
 }
 
 export function login(user, password) {
-    const url = `${MEAL_SERVICE_HOST}/auth/token`;
+    const url = `${MEAL_SERVICE_HOST}/authservice/token`;
 
     const request = axios.get(url, {
             auth: {
