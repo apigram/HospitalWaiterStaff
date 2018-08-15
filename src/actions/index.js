@@ -39,6 +39,7 @@ export const AUTH_SERVICE_HOST = 'http://localhost:5000';
 
 export const FETCH_DATASETS = 'FETCH_DATASETS';
 export const FETCH_DATAPOINTS = 'FETCH_DATAPOINTS';
+export const FETCH_DATA = 'FETCH_DATA';
 
 export let AUTH_HEADER = {
     headers: {
@@ -311,12 +312,22 @@ export function fetchDatasets() {
     }
 }
 
-export function fetchDatapoints(dataset_id) {
-    const url = `${SERVICE_HOST}/biservice/dataset/${dataset_id}`;
+export function fetchDatapoints(dataset_uri) {
+    const url = `${SERVICE_HOST}${dataset_uri}`;
 
     const request = axios.get(url, AUTH_HEADER);
     return {
         type: FETCH_DATAPOINTS,
+        payload: request
+    }
+}
+
+export function fetchData(dataset_datapoint_uri) {
+    const url = `${SERVICE_HOST}${dataset_datapoint_uri}`;
+
+    const request = axios.get(url, AUTH_HEADER);
+    return {
+        type: FETCH_DATA,
         payload: request
     }
 }
