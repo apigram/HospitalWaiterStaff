@@ -36,6 +36,7 @@ export const LOGIN = 'LOGIN';
 
 export const MEAL_SERVICE_HOST = 'http://localhost:5001';
 export const AUTH_SERVICE_HOST = 'http://localhost:5000';
+export const BI_SERVICE_HOST = 'http://localhost:5002';
 
 export const FETCH_DATASETS = 'FETCH_DATASETS';
 export const FETCH_DATAPOINTS = 'FETCH_DATAPOINTS';
@@ -48,7 +49,7 @@ export let AUTH_HEADER = {
 };
 
 export function fetchPatients(criteria = null) {
-    let url = `${SERVICE_HOST}/mealservice/patient`;
+    let url = `${MEAL_SERVICE_HOST}/mealservice/patient`;
     if (criteria !== null) {
         url = `${url}?name=${criteria}`
     }
@@ -61,7 +62,7 @@ export function fetchPatients(criteria = null) {
 }
 
 export function fetchMeals(criteria = null) {
-    let url = `${SERVICE_HOST}/mealservice/meal`;
+    let url = `${MEAL_SERVICE_HOST}/mealservice/meal`;
     if (criteria !== null) {
         url = `${url}?label=${criteria}`
     }
@@ -74,7 +75,7 @@ export function fetchMeals(criteria = null) {
 }
 
 export function fetchRequirements(criteria = null) {
-    let url = `${SERVICE_HOST}/mealservice/requirement`;
+    let url = `${MEAL_SERVICE_HOST}/mealservice/requirement`;
     if (criteria !== null) {
         url = `${url}?label=${criteria}`
     }
@@ -87,7 +88,7 @@ export function fetchRequirements(criteria = null) {
 }
 
 export function selectPatient(patient_uri) {
-    const url = `${SERVICE_HOST}${patient_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${patient_uri}`;
     const request = axios.get(url, AUTH_HEADER);
 
     return {
@@ -97,7 +98,7 @@ export function selectPatient(patient_uri) {
 }
 
 export function selectRequirement(requirement_uri) {
-    const url = `${SERVICE_HOST}${requirement_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${requirement_uri}`;
     const request = axios.get(url, AUTH_HEADER);
 
     return {
@@ -107,7 +108,7 @@ export function selectRequirement(requirement_uri) {
 }
 
 export function selectMeal(meal_uri) {
-    const url = `${SERVICE_HOST}${meal_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${meal_uri}`;
     const request = axios.get(url, AUTH_HEADER);
 
     return {
@@ -117,7 +118,7 @@ export function selectMeal(meal_uri) {
 }
 
 export function fetchRequirementTypes() {
-    const url = `${SERVICE_HOST}/mealservice/ref/requirement_type`;
+    const url = `${MEAL_SERVICE_HOST}/mealservice/ref/requirement_type`;
     const request = axios.get(url, AUTH_HEADER);
 
     return {
@@ -127,7 +128,7 @@ export function fetchRequirementTypes() {
 }
 
 export function fetchMealTimes() {
-    const url = `${SERVICE_HOST}/mealservice/ref/meal_time`;
+    const url = `${MEAL_SERVICE_HOST}/mealservice/ref/meal_time`;
     const request = axios.get(url, AUTH_HEADER);
 
     return {
@@ -137,7 +138,7 @@ export function fetchMealTimes() {
 }
 
 export function addPatient(patient) {
-    const url = `${SERVICE_HOST}/mealservice/patient`;
+    const url = `${MEAL_SERVICE_HOST}/mealservice/patient`;
     const request = axios.post(url, patient, AUTH_HEADER);
 
     return {
@@ -147,7 +148,7 @@ export function addPatient(patient) {
 }
 
 export function addRequirement(requirement) {
-    const url = `${SERVICE_HOST}/mealservice/requirement`;
+    const url = `${MEAL_SERVICE_HOST}/mealservice/requirement`;
     const request = axios.post(url, requirement, AUTH_HEADER);
 
     return {
@@ -157,7 +158,7 @@ export function addRequirement(requirement) {
 }
 
 export function addMeal(meal) {
-    const url = `${SERVICE_HOST}/mealservice/meal`;
+    const url = `${MEAL_SERVICE_HOST}/mealservice/meal`;
     const request = axios.post(url, meal, AUTH_HEADER);
 
     return {
@@ -167,7 +168,7 @@ export function addMeal(meal) {
 }
 
 export function savePatient(patient_uri, patient_data) {
-    const url = `${SERVICE_HOST}${patient_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${patient_uri}`;
     const request = axios.put(url, patient_data, AUTH_HEADER);
 
     return {
@@ -177,7 +178,7 @@ export function savePatient(patient_uri, patient_data) {
 }
 
 export function saveRequirement(requirement_uri, requirement_data) {
-    const url = `${SERVICE_HOST}${requirement_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${requirement_uri}`;
     const request = axios.put(url, requirement_data, AUTH_HEADER);
 
     return {
@@ -187,7 +188,7 @@ export function saveRequirement(requirement_uri, requirement_data) {
 }
 
 export function saveMeal(meal_uri, meal_data) {
-    const url = `${SERVICE_HOST}${meal_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${meal_uri}`;
     const request = axios.put(url, meal_data, AUTH_HEADER);
 
     return {
@@ -197,7 +198,7 @@ export function saveMeal(meal_uri, meal_data) {
 }
 
 export function deletePatient(patient_uri) {
-    const url = `${SERVICE_HOST}${patient_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${patient_uri}`;
     const request = axios.delete(url, AUTH_HEADER);
 
     return {
@@ -207,7 +208,7 @@ export function deletePatient(patient_uri) {
 }
 
 export function deleteRequirement(requirement_uri) {
-    const url = `${SERVICE_HOST}${requirement_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${requirement_uri}`;
     const request = axios.delete(url, AUTH_HEADER);
 
     return {
@@ -227,7 +228,7 @@ export function deleteMeal(meal_uri) {
 }
 
 export function fetchPatientRequirements(patient_req_uri) {
-    const url = `${SERVICE_HOST}${patient_req_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${patient_req_uri}`;
     const request = axios.get(url, AUTH_HEADER);
 
     return {
@@ -237,7 +238,7 @@ export function fetchPatientRequirements(patient_req_uri) {
 }
 
 export function fetchMealRequirements(meal_req_uri) {
-    const url = `${SERVICE_HOST}${meal_req_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${meal_req_uri}`;
     const request = axios.get(url, AUTH_HEADER);
 
     return {
@@ -247,7 +248,7 @@ export function fetchMealRequirements(meal_req_uri) {
 }
 
 export function deletePatientRequirement(patient_req_uri) {
-    const url = `${SERVICE_HOST}${patient_req_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${patient_req_uri}`;
     const request = axios.delete(url, AUTH_HEADER);
 
     return {
@@ -257,7 +258,7 @@ export function deletePatientRequirement(patient_req_uri) {
 }
 
 export function deleteMealRequirement(meal_req_uri) {
-    const url = `${SERVICE_HOST}${meal_req_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${meal_req_uri}`;
     const request = axios.delete(url, AUTH_HEADER);
 
     return {
@@ -266,7 +267,7 @@ export function deleteMealRequirement(meal_req_uri) {
     };
 }
 export function addPatientRequirement(patient_req_uri, patient_req_data) {
-    const url = `${SERVICE_HOST}${patient_req_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${patient_req_uri}`;
     const request = axios.post(url, patient_req_data, AUTH_HEADER);
 
     return {
@@ -276,7 +277,7 @@ export function addPatientRequirement(patient_req_uri, patient_req_data) {
 }
 
 export function addMealRequirement(meal_req_uri, meal_req_data) {
-    const url = `${SERVICE_HOST}${meal_req_uri}`;
+    const url = `${MEAL_SERVICE_HOST}${meal_req_uri}`;
     const request = axios.post(url, meal_req_data, AUTH_HEADER);
 
     return {
@@ -303,7 +304,7 @@ export function login(user, password) {
 }
 
 export function fetchDatasets() {
-    const url = `${SERVICE_HOST}/biservice/dataset`;
+    const url = `${BI_SERVICE_HOST}/biservice/dataset`;
 
     const request = axios.get(url, AUTH_HEADER);
     return {
@@ -313,7 +314,7 @@ export function fetchDatasets() {
 }
 
 export function fetchDatapoints(dataset_uri) {
-    const url = `${SERVICE_HOST}${dataset_uri}`;
+    const url = `${BI_SERVICE_HOST}${dataset_uri}`;
 
     const request = axios.get(url, AUTH_HEADER);
     return {
@@ -323,7 +324,7 @@ export function fetchDatapoints(dataset_uri) {
 }
 
 export function fetchData(dataset_datapoint_uri) {
-    const url = `${SERVICE_HOST}${dataset_datapoint_uri}`;
+    const url = `${BI_SERVICE_HOST}${dataset_datapoint_uri}`;
 
     const request = axios.get(url, AUTH_HEADER);
     return {
