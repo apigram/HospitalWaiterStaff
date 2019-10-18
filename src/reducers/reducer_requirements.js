@@ -3,13 +3,13 @@ import {FETCH_REQUIREMENTS, ADD_REQUIREMENT, DELETE_REQUIREMENT, SAVE_REQUIREMEN
 export default function(state = [], action) {
     switch (action.type) {
         case FETCH_REQUIREMENTS:
-            return action.payload.data.requirements;
+            return action.payload.data;
         case ADD_REQUIREMENT:
-            return [action.payload.data.requirement, ...state];
+            return [action.payload.data, ...state];
         case SAVE_REQUIREMENT:
             return state.map((req) => {
-                if (req.uri === action.payload.data.requirement.uri) {
-                    return action.payload.data.requirement;
+                if (req.uri === action.payload.data.uri) {
+                    return action.payload.data;
                 } else {
                     return req;
                 }

@@ -3,7 +3,10 @@ import {FETCH_MEAL_TIMES} from '../actions';
 export default function(state = [], action) {
     switch (action.type) {
         case FETCH_MEAL_TIMES:
-            return action.payload.data.meal_times;
+            if (action.payload.data) {
+                return action.payload.data;
+            }
+            return [];
         default:
             return state;
     }

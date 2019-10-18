@@ -3,13 +3,13 @@ import {ADD_MEAL, FETCH_MEALS, SAVE_MEAL, DELETE_MEAL} from '../actions';
 export default function(state = [], action) {
     switch (action.type) {
         case FETCH_MEALS:
-            return action.payload.data.meals;
+            return action.payload.data;
         case ADD_MEAL:
-            return [action.payload.data.meal, ...state];
+            return [action.payload.data, ...state];
         case SAVE_MEAL:
             return state.map((meal) => {
                 if (meal.uri === action.payload.data.meal.uri) {
-                    return action.payload.data.meal;
+                    return action.payload.data;
                 } else {
                     return meal;
                 }

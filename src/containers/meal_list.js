@@ -70,30 +70,30 @@ class MealList extends Component {
     renderOptions() {
         return this.props.mealTimes.map((type) => {
             return (
-                <option key={type.value} value={type.value}>{type.key}</option>
+                <option key={type.url} value={type.url}>{type.label}</option>
             );
         })
     }
 
-    removeMeal(meal_uri) {
-        this.props.deleteMeal(meal_uri);
+    removeMeal(meal_url) {
+        this.props.deleteMeal(meal_url);
     }
 
 
     renderList() {
         return this.props.meals.map((meal) => {
             let listClass = 'list-group-item list-group-item-action';
-            if (this.props.activeMeal !== null && meal.uri === this.props.activeMeal.uri) {
+            if (this.props.activeMeal !== null && meal.url === this.props.activeMeal.url) {
                 listClass = listClass + ' active';
             }
             return (
-                <li key={meal.uri} className={listClass}>
+                <li key={meal.url} className={listClass}>
                     <div className="row">
-                        <div className="col-sm-10" onClick={() => {this.props.selectMeal(meal.uri)}}>
+                        <div className="col-sm-10" onClick={() => {this.props.selectMeal(meal.url)}}>
                             {meal.label}
                         </div>
                         <div className="col-sm-2">
-                            <button type="button" className="btn btn-danger" onClick={() => {this.removeMeal(meal.uri)}}>Delete</button>
+                            <button type="button" className="btn btn-danger" onClick={() => {this.removeMeal(meal.url)}}>Delete</button>
                         </div>
                     </div>
                 </li>

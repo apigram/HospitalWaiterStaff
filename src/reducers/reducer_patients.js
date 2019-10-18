@@ -3,13 +3,13 @@ import {FETCH_PATIENTS, ADD_PATIENT, SAVE_PATIENT, DELETE_PATIENT} from '../acti
 export default function(state = [], action) {
     switch (action.type) {
         case FETCH_PATIENTS:
-            return action.payload.data.patients;
+            return action.payload.data;
         case ADD_PATIENT:
-            return [action.payload.data.patient, ...state];
+            return [action.payload.data, ...state];
         case SAVE_PATIENT:
             return state.map((patient) => {
                 if (patient.uri === action.payload.data.patient.uri) {
-                    return action.payload.data.patient;
+                    return action.payload.data;
                 } else {
                     return patient;
                 }

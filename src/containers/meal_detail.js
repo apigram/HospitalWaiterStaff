@@ -9,7 +9,7 @@ class MealDetail extends Component {
         super(props);
 
         this.state = {
-            uri: '',
+            url: '',
             total_quantity: '',
             current_quantity: '',
             time_of_day: ''
@@ -19,8 +19,8 @@ class MealDetail extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.activeMeal.uri !== prevState.uri) {
-            this.setState({uri: this.props.activeMeal.uri});
+        if (this.props.activeMeal.url !== prevState.url) {
+            this.setState({url: this.props.activeMeal.url});
             if (this.props.activeMeal.total_quantity !== prevState.total_quantity && this.state.total_quantity === '') {
                 this.setState({total_quantity: this.props.activeMeal.total_quantity})
             }
@@ -64,7 +64,7 @@ class MealDetail extends Component {
             current_quantity: this.state.current_quantity,
             time_of_day: this.state.time_of_day
         };
-        this.props.saveMeal(this.props.activeMeal.uri, mealData);
+        this.props.saveMeal(this.props.activeMeal.url, mealData);
     }
 
     render() {

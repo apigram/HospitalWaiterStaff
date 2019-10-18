@@ -3,9 +3,9 @@ import {FETCH_PATIENT_REQUIREMENTS, ADD_PATIENT_REQUIREMENT, DELETE_PATIENT_REQU
 export default function(state = [], action) {
     switch (action.type) {
         case FETCH_PATIENT_REQUIREMENTS:
-            return action.payload.data.requirements;
+            return action.payload.data;
         case ADD_PATIENT_REQUIREMENT:
-            return [action.payload.data.requirement, ...state];
+            return [action.payload.data, ...state];
         case DELETE_PATIENT_REQUIREMENT:
             return state.filter((req) => req.id !== action.payload.data.id);
         default:

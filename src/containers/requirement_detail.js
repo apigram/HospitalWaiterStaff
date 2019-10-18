@@ -8,7 +8,7 @@ class RequirementDetail extends Component {
         super(props);
 
         this.state = {
-            uri: '',
+            url: '',
             type: ''
         };
         this.handleChange = this.handleChange.bind(this);
@@ -16,14 +16,14 @@ class RequirementDetail extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.activeRequirement.type !== prevState.type && this.props.activeRequirement.uri !== prevState.uri) {
-            this.setState({uri: this.props.activeRequirement.uri, type: this.props.activeRequirement.type})
+        if (this.props.activeRequirement.type !== prevState.type && this.props.activeRequirement.url !== prevState.url) {
+            this.setState({url: this.props.activeRequirement.url, type: this.props.activeRequirement.type})
         }
     }
 
     renderOptions() {
         return this.props.requirementTypes.map((type) => {
-            return <option key={type.value} value={type.value}>{type.key}</option>
+            return <option key={type.url} value={type.url}>{type.label}</option>
         });
     }
 
@@ -36,7 +36,7 @@ class RequirementDetail extends Component {
         let reqData = {
             type: this.state.type
         };
-        this.props.saveRequirement(this.props.activeRequirement.uri, reqData);
+        this.props.saveRequirement(this.props.activeRequirement.url, reqData);
     }
 
     render() {

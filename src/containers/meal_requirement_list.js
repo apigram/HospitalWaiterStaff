@@ -17,7 +17,7 @@ class MealRequirementList extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.activeMeal.uri !== prevProps.activeMeal.uri) {
+        if (this.props.activeMeal.url !== prevProps.activeMeal.url) {
             this.props.fetchMealRequirements(this.props.activeMeal.requirements);
         }
     }
@@ -25,7 +25,7 @@ class MealRequirementList extends Component {
     renderOptions() {
         return this.props.requirements.map((req) => {
             return (
-                <option key={req.uri} value={req.id}>{req.label}</option>
+                <option key={req.url} value={req.id}>{req.label}</option>
             );
         })
     }
@@ -56,7 +56,7 @@ class MealRequirementList extends Component {
                 scaleStr = ' (' + req.scale.slice(0, 1).toUpperCase() + req.scale.slice(1, req.scale.length).toLowerCase() + ')';
             }
             return (
-                <li key={req.uri} className="list-group-item">
+                <li key={req.url} className="list-group-item">
                     <div className="row">
                         <div className="col-sm-9 text-left">
                             {req.label}{scaleStr}

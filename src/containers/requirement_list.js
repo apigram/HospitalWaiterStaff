@@ -50,8 +50,8 @@ class RequirementList extends Component {
         this.closeModal();
     }
 
-    removeRequirement(requirement_uri) {
-        this.props.deleteRequirement(requirement_uri);
+    removeRequirement(requirement_url) {
+        this.props.deleteRequirement(requirement_url);
     }
 
     handleChange(event) {
@@ -70,7 +70,7 @@ class RequirementList extends Component {
     renderOptions() {
         return this.props.requirementTypes.map((type) => {
             return (
-                <option key={type.value} value={type.value}>{type.key}</option>
+                <option key={type.url} value={type.url}>{type.label}</option>
             );
         })
     }
@@ -78,17 +78,17 @@ class RequirementList extends Component {
     renderList() {
         return this.props.requirements.map((requirement) => {
             let listClass = 'list-group-item list-group-item-action';
-            if (this.props.activeRequirement !== null && requirement.uri === this.props.activeRequirement.uri) {
+            if (this.props.activeRequirement !== null && requirement.url === this.props.activeRequirement.url) {
                 listClass = listClass + ' active';
             }
             return (
-                <li key={requirement.uri} className={listClass} >
+                <li key={requirement.url} className={listClass} >
                     <div className="row">
-                        <div className="col-sm-10" onClick={() => {this.props.selectRequirement(requirement.uri)}}>
+                        <div className="col-sm-10" onClick={() => {this.props.selectRequirement(requirement.url)}}>
                             {requirement.label}
                         </div>
                         <div className="col-sm-2">
-                            <button type="button" className="btn btn-danger" onClick={() => {this.removeRequirement(requirement.uri)}}>Delete</button>
+                            <button type="button" className="btn btn-danger" onClick={() => {this.removeRequirement(requirement.url)}}>Delete</button>
                         </div>
                     </div>
                 </li>

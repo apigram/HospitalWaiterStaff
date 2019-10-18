@@ -37,24 +37,24 @@ class PatientList extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    removePatient(patient_uri) {
-        this.props.deletePatient(patient_uri);
+    removePatient(patient_url) {
+        this.props.deletePatient(patient_url);
     }
 
     renderList() {
         return this.props.patients.map((patient) => {
             let listClass = 'list-group-item list-group-item-action';
-            if (this.props.activePatient !== null && patient.uri === this.props.activePatient.uri) {
+            if (this.props.activePatient !== null && patient.url === this.props.activePatient.url) {
                 listClass = listClass + ' active';
             }
             return (
-                <li key={patient.uri} className={listClass} >
+                <li key={patient.url} className={listClass} >
                     <div className="row">
-                        <div className="col-sm-10" onClick={() => {this.props.selectPatient(patient.uri)}}>
+                        <div className="col-sm-10" onClick={() => {this.props.selectPatient(patient.url)}}>
                             {patient.first_name} {patient.last_name}
                         </div>
                         <div className="col-sm-2">
-                            <button type="button" className="btn btn-danger" onClick={() => {this.removePatient(patient.uri)}}>Delete</button>
+                            <button type="button" className="btn btn-danger" onClick={() => {this.removePatient(patient.url)}}>Delete</button>
                         </div>
                     </div>
                 </li>

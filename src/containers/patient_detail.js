@@ -8,7 +8,7 @@ class PatientDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            uri: '',
+            url: '',
             first_name: '',
             last_name: '',
             date_of_birth: ''
@@ -18,8 +18,8 @@ class PatientDetail extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.activePatient.uri !== prevState.uri) {
-            this.setState({uri: this.props.activePatient.uri});
+        if (this.props.activePatient.url !== prevState.url) {
+            this.setState({url: this.props.activePatient.url});
             if (this.props.activePatient.first_name !== prevState.first_name) {
                 this.setState({first_name: this.props.activePatient.first_name})
             }
@@ -56,7 +56,7 @@ class PatientDetail extends Component {
             last_name: this.state.last_name,
             date_of_birth: this.state.date_of_birth
         };
-        this.props.savePatient(this.props.activePatient.uri, patientData);
+        this.props.savePatient(this.props.activePatient.url, patientData);
     }
 
     render() {
